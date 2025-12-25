@@ -2,10 +2,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from './CartSlice';
 import samplePlant from '../assets/sample_plant.png';
-
+import './ProductList.css';
 
 const plants = {
-  'Indoor Plants': [
+  indoor: [
     { id: 1, name: 'Snake Plant', price: 25, image: samplePlant },
     { id: 2, name: 'Pothos', price: 20, image: samplePlant },
     { id: 3, name: 'ZZ Plant', price: 30, image: samplePlant },
@@ -13,7 +13,7 @@ const plants = {
     { id: 5, name: 'Fiddle Leaf Fig', price: 55, image: samplePlant },
     { id: 6, name: 'Rubber Plant', price: 35, image: samplePlant },
   ],
-  'Outdoor Plants': [
+  outdoor: [
     { id: 7, name: 'Rose Bush', price: 40, image: samplePlant },
     { id: 8, name: 'Lavender', price: 15, image: samplePlant },
     { id: 9, name: 'Hydrangea', price: 50, image: samplePlant },
@@ -21,7 +21,7 @@ const plants = {
     { id: 11, name: 'Boxwood', price: 35, image: samplePlant },
     { id: 12, name: 'Fern', price: 20, image: samplePlant },
   ],
-  'Succulents': [
+  succulents: [
     { id: 13, name: 'Echeveria', price: 10, image: samplePlant },
     { id: 14, name: 'Sedum', price: 8, image: samplePlant },
     { id: 15, name: 'Aloe Vera', price: 12, image: samplePlant },
@@ -29,6 +29,19 @@ const plants = {
     { id: 17, name: 'Sempervivum', price: 10, image: samplePlant },
     { id: 18, name: 'Gasteria', price: 12, image: samplePlant },
   ],
+};
+
+const prettyCategoryName = (category) => {
+    switch (category) {
+        case 'indoor':
+            return 'Indoor Plants';
+        case 'outdoor':
+            return 'Outdoor Plants';
+        case 'succulents':
+            return 'Succulents';
+        default:
+            return category;
+    }
 };
 
 const ProductList = () => {
@@ -44,14 +57,14 @@ const ProductList = () => {
   };
 
   return (
-    <div>
+    <div className='product-list-container'>
       {Object.keys(plants).map((category) => (
-        <div key={category}>
-          <h2>{category}</h2>
-          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div key={category} className='plant-category'>
+          <h2 className='plant-category-title'>{prettyCategoryName(category)}</h2>
+          <div className='plant-list'>
             {plants[category].map((plant) => (
-              <div key={plant.id} style={{ border: '1px solid #ccc', margin: '10px', padding: '10px', width: '200px' }}>
-                <img src={plant.image} alt={plant.name} style={{ width: '100%' }} />
+              <div key={plant.id} className='plant-card'>
+                <img src={plant.image} alt={plant.name} className='plant-image' />
                 <h3>{plant.name}</h3>
                 <p>${plant.price}</p>
                 <button onClick={() => handleAddToCart(plant)} disabled={isItemInCart(plant.id)}>

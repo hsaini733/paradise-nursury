@@ -1,0 +1,36 @@
+
+.product-list-container {
+  /* Add any container-specific styles here */
+}
+
+.plant-category {
+  margin-bottom: 2rem;
+}
+
+.plant-category-title {
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.plant-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Use gap for spacing between items */
+}
+
+.plant-card {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plant-image {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 10px;
+}

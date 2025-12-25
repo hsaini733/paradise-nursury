@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './App.css';
-import backgroundImage from './assets/paradise_background.png';
 import AboutUs from './components/AboutUs';
 import ProductList from './components/ProductList';
 import CartItem from './components/CartItem';
@@ -24,7 +23,7 @@ function App() {
     setShowCart(false);
   };
 
-  const handleShowProductList = () => {
+  const handleGetStartedClick = () => {
     setShowProductList(true);
     setShowAboutUs(false);
     setShowCart(false);
@@ -38,7 +37,8 @@ function App() {
 
   return (
     <>
-      <div className="app-container" style={{backgroundImage: `url(${backgroundImage})`}}>
+      <div className="background-image"></div>
+      <div className="app-container">
         <div className="logo">
 
           <header>
@@ -47,7 +47,7 @@ function App() {
               {' | '}
               <a href="#" onClick={(e) => { e.preventDefault(); handleShowAboutUs(); }}>About Us</a>
               {' | '}
-              <a href="#" onClick={(e) => { e.preventDefault(); handleShowProductList(); }}>Plants</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); handleGetStartedClick(); }}>Plants</a>
               {' | '}
               <a href="#" onClick={(e) => { e.preventDefault(); handleShowCart(); }}>
                 Cart ({cartItems.reduce((acc, item) => acc + item.quantity, 0)})
@@ -62,12 +62,12 @@ function App() {
             ) : showProductList ? (
               <ProductList />
             ) : showCart ? (
-              <CartItem onContinueShopping={handleShowProductList} />
+              <CartItem onContinueShopping={handleGetStartedClick} />
             ) : (
               <div style={{ textAlign: 'center' }}>
                 <h1>Welcome to Paradise Nursery</h1>
                 <p>Your one-stop shop for the most beautiful and exotic plants.</p>
-                <button onClick={handleShowProductList} style={{ marginTop: '1rem' }}>
+                <button onClick={handleGetStartedClick} style={{ marginTop: '1rem' }}>
                   Get Started
                 </button>
               </div>
